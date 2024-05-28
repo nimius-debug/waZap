@@ -1,15 +1,9 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 
 // The features array is a list of features that will be displayed in the accordion.
-// - title: The title of the feature
-// - description: The description of the feature (when clicked)
-// - type: The type of media (video or image)
-// - path: The path to the media (for better SEO, try to use a local path)
-// - format: The format of the media (if type is 'video')
-// - alt: The alt text of the image (if type is 'image')
 const features = [
   {
     title: "Emails",
@@ -102,10 +96,13 @@ const features = [
   },
 ];
 
-// An SEO-friendly accordion component including the title and a description (when clicked.)
 const Item = ({ feature, isOpen, setFeatureSelected }) => {
   const accordion = useRef(null);
   const { title, description, svg } = feature;
+
+  useEffect(() => {
+    console.log("Rendering Item:", title);
+  }, [title]);
 
   return (
     <li>
@@ -117,14 +114,8 @@ const Item = ({ feature, isOpen, setFeatureSelected }) => {
         }}
         aria-expanded={isOpen}
       >
-        <span className={`duration-100 ${isOpen ? "text-primary" : ""}`}>
-          {svg}
-        </span>
-        <span
-          className={`flex-1 text-base-content ${
-            isOpen ? "text-primary font-semibold" : ""
-          }`}
-        >
+        <span className={`duration-100 ${isOpen ? "text-primary" : ""}`}>{svg}</span>
+        <span className={`flex-1 text-base-content ${isOpen ? "text-primary font-semibold" : ""}`}>
           <h3 className="inline">{title}</h3>
         </span>
       </button>
@@ -144,8 +135,6 @@ const Item = ({ feature, isOpen, setFeatureSelected }) => {
   );
 };
 
-// A component to display the media (video or image) of the feature. If the type is not specified, it will display an empty div.
-// Video are set to autoplay for best UX.
 const Media = ({ feature }) => {
   const { type, path, format, alt } = feature;
   const style = "rounded-2xl aspect-square w-full sm:w-[26rem]";
@@ -153,6 +142,10 @@ const Media = ({ feature }) => {
     width: 500,
     height: 500,
   };
+
+  useEffect(() => {
+    console.log("Rendering Media:", feature.title);
+  }, [feature]);
 
   if (type === "video") {
     return (
@@ -184,10 +177,18 @@ const Media = ({ feature }) => {
   }
 };
 
-// A component to display 2 to 5 features in an accordion.
-// By default, the first feature is selected. When a feature is clicked, the others are closed.
 const FeaturesAccordion = () => {
   const [featureSelected, setFeatureSelected] = useState(0);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+    console.log("FeaturesAccordion mounted, isClient:", isClient);
+  }, []);
+
+  if (!isClient) {
+    return null; // or return a loading spinner, placeholder, etc.
+  }
 
   return (
     <section
@@ -201,7 +202,7 @@ const FeaturesAccordion = () => {
             and get profitable
           </span>
         </h2>
-        <div className=" flex flex-col md:flex-row gap-12 md:gap-24">
+        <div className="flex flex-col md:flex-row gap-12 md:gap-24">
           <div className="grid grid-cols-1 items-stretch gap-8 sm:gap-12 lg:grid-cols-2 lg:gap-20">
             <ul className="w-full">
               {features.map((feature, i) => (

@@ -31,13 +31,7 @@ const TestimonialsAvatars = ({ priority = false }) => {
       <div className={`-space-x-5 avatar-group justy-start`}>
         {avatars.map((image, i) => (
           <div className="avatar w-12 h-12" key={i}>
-            <Image
-              src={image.src}
-              alt={image.alt}
-              priority={priority}
-              width={50}
-              height={50}
-            />
+            <Image src={image.src} alt={image.alt} priority={priority} width={50} height={50} />
           </div>
         ))}
       </div>
@@ -50,7 +44,7 @@ const TestimonialsAvatars = ({ priority = false }) => {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              className="w-5 h-5 text-yellow-500"
+              className="w-5 h-5 text-lime-700"
               key={i}
             >
               <path
@@ -63,8 +57,8 @@ const TestimonialsAvatars = ({ priority = false }) => {
         </div>
 
         <div className="text-base text-base-content/80">
-          <span className="font-semibold text-base-content">32</span> makers
-          ship faster
+          <span className="font-semibold text-base-content">34</span> Send messages without getting
+          blocked or banned
         </div>
       </div>
     </div>

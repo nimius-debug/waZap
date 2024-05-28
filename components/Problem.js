@@ -24,7 +24,7 @@ const Arrow = ({ extraStyle }) => {
 const Step = ({ emoji, text }) => {
   return (
     <div className="w-full md:w-48 flex flex-col gap-2 items-center justify-center">
-      <span className="text-4xl">{emoji}</span>
+      <span className="text-6xl">{emoji}</span>
       <h3 className="font-bold">{text}</h3>
     </div>
   );
@@ -41,14 +41,13 @@ const Step = ({ emoji, text }) => {
 // - Features: "ShipFast has user auth, Stripe, emails all set up for you"
 const Problem = () => {
   return (
-    <section className="bg-neutral text-neutral-content">
+    <section className="bg-primary text-primary-content">
       <div className="max-w-7xl mx-auto px-8 py-16 md:py-32 text-center">
         <h2 className="max-w-3xl mx-auto font-extrabold text-4xl md:text-5xl tracking-tight mb-6 md:mb-8">
           80% of startups fail because founders never launch
         </h2>
         <p className="max-w-xl mx-auto text-lg opacity-90 leading-relaxed mb-12 md:mb-20">
-          Emails, DNS records, user authentication... There&apos;s so much going
-          on.
+          Emails, DNS records, user authentication... There&apos;s so much going on.
         </p>
 
         <div className="flex flex-col md:flex-row justify-center items-center md:items-start gap-6">

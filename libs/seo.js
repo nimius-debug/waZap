@@ -5,14 +5,7 @@ import config from "@/config";
 // It's already added in the root layout.js so you don't have to add it to every pages
 // But I recommend to set the canonical URL for each page (export const metadata = getSEOTags({canonicalUrlRelative: "/"});)
 // See https://shipfa.st/docs/features/seo
-export const getSEOTags = ({
-  title,
-  description,
-  keywords,
-  openGraph,
-  canonicalUrlRelative,
-  extraTags,
-} = {}) => {
+export const getSEOTags = ({ title, description, keywords, openGraph, canonicalUrlRelative, extraTags } = {}) => {
   return {
     // up to 50 characters (what does your app do for the user?) > your main should be here
     title: title || config.appName,
@@ -22,11 +15,7 @@ export const getSEOTags = ({
     keywords: keywords || [config.appName],
     applicationName: config.appName,
     // set a base URL prefix for other fields that require a fully qualified URL (.e.g og:image: og:image: 'https://yourdomain.com/share.png' => '/share.png')
-    metadataBase: new URL(
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:3000/"
-        : `https://${config.domainName}/`
-    ),
+    metadataBase: new URL(process.env.NODE_ENV === "development" ? "http://localhost:3000/" : `https://${config.domainName}/`),
 
     openGraph: {
       title: openGraph?.title || config.appName,
@@ -85,10 +74,10 @@ export const renderSchemaTags = () => {
           url: `https://${config.domainName}/`,
           author: {
             "@type": "Person",
-            name: "Marc Lou",
+            name: "Jorge Gil",
           },
           datePublished: "2023-08-01",
-          applicationCategory: "EducationalApplication",
+          applicationCategory: "ProductivityApplication",
           aggregateRating: {
             "@type": "AggregateRating",
             ratingValue: "4.8",
